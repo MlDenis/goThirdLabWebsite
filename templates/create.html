@@ -6,8 +6,10 @@
     <main role="main" class="inner cover">
         <h1 class="cover-heading">Форма добавления статьи</h1>
         <form action="/save_article" method="post"></form>
-        <input type="text">
-
+        <input type="text" name="title" id="title" placeholder="Введите название новости:" class="form-control"><br>
+        <textarea name="anons" id="anons" class="form-control" placeholder="Введите текст анонса новости:"></textarea><br>
+        <textarea name="full_text" id="full_text" class="form-control" placeholder="Введите текст новости:"></textarea><br>
+        <button class="btn btn-warning">Добавить</button>
     </main>
 
     {{ template "footer"}}

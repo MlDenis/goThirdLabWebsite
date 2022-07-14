@@ -18,13 +18,22 @@ func index(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, err.Error())
 	}
 
+	t.ExecuteTemplate(w, "index", nil)
+}
+
+func create(w http.ResponseWriter, r *http.Request) {
+	t, err := template.ParseFiles("templates/create.html", "templates/header.html", "templates/footer.html")
+	if err != nil {
+		fmt.Fprintf(w, err.Error())
+	}
+
 	t.ExecuteTemplate(w, "create", nil)
 }
 
 func handlerFunc() {
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static/"))))
 	http.HandleFunc("/", index)
-	http.HandleFunc("/create", create)
+	http.HandleFunc("/create/", create)
 	http.ListenAndServe(":8080", nil)
 }
 
